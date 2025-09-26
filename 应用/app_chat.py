@@ -189,12 +189,12 @@ def build_ui(engine: ChatEngine):
 def main():
     model_path = r"D:\qwen_pulse\models"       # 本地基座模型路径
     adapter_path = r"D:\qwen_pulse\qwen_pulse_lora"  # LoRA 权重路径（可选）
-    port = 7860
+    port = 7890
     share = False   # True = 使用 gradio share
 
     engine = ChatEngine(model_path, adapter_path)
     ui = build_ui(engine)
-    ui.launch(server_name="0.0.0.0", server_port=port, share=share, show_error=True)
+    ui.launch(server_name="127.0.0.1", server_port=port, share=share, show_error=True)
 
 if __name__ == "__main__":
     main()
