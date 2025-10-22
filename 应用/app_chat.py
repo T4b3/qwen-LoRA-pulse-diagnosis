@@ -83,7 +83,10 @@ def load_model_and_tokenizer(model_path: str, adapter_path: str = None):
         model = PeftModel.from_pretrained(
             base,
             adapter_path,
-            is_trainable=False
+            is_trainable=False,
+            device_map="auto",   #￥
+            offload_folder=r"E:\T4b3_Works\AnacondaWorks\final\应用\offload",   #￥
+            offload_state_dict=True,    #￥
         )
     else:
         model = base
@@ -187,9 +190,9 @@ def build_ui(engine: ChatEngine):
     return demo
 
 def main():
-    model_path = r"D:\qwen_pulse\models"       # 本地基座模型路径
-    adapter_path = r"D:\qwen_pulse\qwen_pulse_lora"  # LoRA 权重路径（可选）
-    port = 7890
+    model_path = r"E:\T4b3_Works\AnacondaWorks\final\models\Qwen-7B-Chat" # r"E:\T4b3_Works\AnacondaWorks\final\models\Qwen-7B-Chat" # r"D:\qwen_pulse\models"       # 本地基座模型路径
+    adapter_path = r"E:\T4b3_Works\AnacondaWorks\final\qwen-pulse-lora" # r"D:\qwen_pulse\qwen_pulse_lora"  # LoRA 权重路径（可选）
+    port = 7860
     share = False   # True = 使用 gradio share
 
     engine = ChatEngine(model_path, adapter_path)
